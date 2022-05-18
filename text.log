@@ -1,0 +1,38 @@
+prefix2022/05/16 15:09:21 utility module initiating
+prefix2022/05/16 15:09:21 utility module initiated
+prefix2022/05/16 15:09:21 vue module initiating
+prefix2022/05/16 15:09:21 vue module initiated
+prefix2022/05/16 15:09:21 runing http server : localhost:80
+prefix2022/05/16 15:09:21 listen tcp :80: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+prefix2022/05/16 15:09:32 utility module initiating
+prefix2022/05/16 15:09:32 utility module initiated
+prefix2022/05/16 15:09:32 vue module initiating
+prefix2022/05/16 15:09:32 vue module initiated
+prefix2022/05/16 15:09:32 runing http server : localhost:80
+prefix2022/05/16 15:09:32 listen tcp :80: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+prefix2022/05/16 15:09:39 utility module initiating
+prefix2022/05/16 15:09:39 utility module initiated
+prefix2022/05/16 15:09:39 vue module initiating
+prefix2022/05/16 15:09:39 vue module initiated
+prefix2022/05/16 15:09:39 runing http server : localhost:80
+prefix2022/05/16 16:40:27 utility module initiating
+prefix2022/05/16 16:40:27 utility module initiated
+prefix2022/05/16 16:40:27 vue module initiating
+prefix2022/05/16 16:40:27 vue module initiated
+prefix2022/05/16 16:40:27 runing http server : localhost:90
+prefix2022/05/18 10:44:09 updating  vue\header.vue
+prefix2022/05/18 10:47:20 updating  vue\header.vue
+prefix2022/05/18 12:23:32 updating  vue\header.vue
+prefix2022/05/18 12:28:13 updating  vue\header.vue
+prefix2022/05/18 12:30:10 updating  vue\header.vue
+prefix2022/05/18 12:41:43 updating  vue\header.vue
+prefix2022/05/18 12:43:42 updating  vue\header.vue
+prefix2022/05/18 12:45:10 updating  vue\header.vue
+prefix2022/05/18 12:45:57 updating  vue\header.vue
+prefix2022/05/18 12:46:15 updating  vue\header.vue
+prefix2022/05/18 12:50:19 updating  vue\header.vue
+prefix2022/05/18 12:50:53 updating  vue\header.vue
+prefix2022/05/18 12:52:46 updating  vue\header.vue
+prefix2022/05/18 12:56:45 updating  vue\header.vue
+prefix2022/05/18 12:57:34 updating  vue\header.vue
+prefix2022/05/18 12:58:15 updating  vue\header.vue
