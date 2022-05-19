@@ -287,7 +287,7 @@
                              </button>-->
                         </p>
                             <div class="collapse" id="collapseExample">
-                                <autocomplete placeholder="Search for products" class="d-none d-lg-block mx-4 w-100"></autocomplete>
+                               <autocomplete placeholder="Search for products" class="d-none d-lg-block mx-4 w-100"></autocomplete> 
                             </div>
                         <!--heart-->
                         <router-link class="navbar-tool d-none d-lg-flex" to="/user/wishlist">
