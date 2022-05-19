@@ -178,25 +178,6 @@
     
         template: `
     <header class="shadow-sm">
-        <!-- Topbar-->
-        <div class="topbar topbar-dark bg-dark">
-            <div class="container">
-                <div class="topbar-text dropdown d-md-none">
-                    <a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Useful links</a>
-                    <ul class="dropdown-menu">
-                        <li v-if="account.Mobile"><a class="dropdown-item" :href="'tel:'+account.Mobile"><i
-                                    class="ci-support"></i>{{account.Mobile}}</a></li>
-                        <li>
-                            <router-link to="/user/orders" class="dropdown-item" href="order-tracking.html"><i
-                                    class="ci-location"></i>Orders tracking</router-link>
-                        </li>
-                    </ul>
-                </div>
-                
-               
-                
-            </div>
-        </div>
         <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
         <div class="navbar-sticky bg-light" ref="stickynavbar">
             <div class="navbar navbar-expand-lg navbar-light">
@@ -207,9 +188,83 @@
                     <a v-if="account.WideLogo" class="navbar-brand d-none d-sm-block flex-shrink-0" href="/">
                         <img :src="account.WideLogo" style="height: 60px;" :alt="account.Title">
                     </a>
-                    <a v-else class="navbar-brand d-none d-sm-block flex-shrink-0 text-capitalize"
-                        href="/">{{account.Title}}</a>
-                    <autocomplete placeholder="Search for products" class="d-none d-lg-block mx-4 w-100"></autocomplete>
+                    <!-- Departments menu-->
+                        <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="#"
+                                    data-bs-toggle="dropdown"><i class="ci-view-grid me-2"></i>Departments</a>
+                                <div class="dropdown-menu px-2 pb-4">
+                                    <div class="d-flex flex-wrap" style="width: 80vw;">
+                                        <div v-for="category in categories" :key="'category'+category.ID"
+                                            class="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
+                                            <div class="widget widget-links">
+                                                <router-link v-if="category.Logo"
+                                                    class="d-block overflow-hidden rounded-3 mb-3"
+                                                    :to="'/shop/'+encodeURI(category.Name)">
+                                                    <img :src="category.Logo" :alt="category.Name"
+                                                        style="height: 117px;width: 100%;min-width: 200px;">
+                                                </router-link>
+                                                <h6 class="fs-base mb-2">{{category.Name}}</h6>
+                                                <ul class="widget-list">
+                                                    <li class="widget-list-item mb-1"
+                                                        v-for="subcategory in category.subcategories"
+                                                        :key="'subcategory'+subcategory.ID">
+                                                        <router-link
+                                                            :to="'/shop/'+encodeURI(category.Name)+'/'+encodeURI(subcategory.Name)"
+                                                            class="widget-list-link">{{subcategory.Name}}</router-link>
+                                                    </li>
+                                                    <li class="widget-list-item mb-1">
+                                                        <router-link :to="'/shop/'+encodeURI(category.Name)"
+                                                            class="widget-list-link"
+                                                            :class="{'active': ($route.path == '/shop/'+encodeURI(category.Name))}">
+                                                            Shop All {{category.Name}}
+                                                        </router-link>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- Primary menu-->
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <router-link to="/" class="nav-link">Home</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/shop" class="nav-link">Shop</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/blogs" class="nav-link">Blogs</router-link>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside">Pages</a>
+                                <ul class="dropdown-menu">
+                                    <!--<li class="dropdown">-->
+                                    <!--    <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Navbar Variants</a>-->
+                                    <!--    <ul class="dropdown-menu">-->
+                                    <!--        <li><a class="dropdown-item" href="navbar-1-level-light.html">1 Level Light</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="navbar-1-level-dark.html">1 Level Dark</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="navbar-2-level-light.html">2 Level Light</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="navbar-2-level-dark.html">2 Level Dark</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="navbar-3-level-light.html">3 Level Light</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="navbar-3-level-dark.html">3 Level Dark</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="home-electronics-store.html">Electronics Store</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="home-marketplace.html">Marketplace</a></li>-->
+                                    <!--        <li><a class="dropdown-item" href="home-grocery-store.html">Side Menu (Grocery)</a></li>-->
+                                    <!--    </ul>-->
+                                    <!--</li>-->
+                                    <!--<li class="dropdown-divider"></li>-->
+                                    <li v-for="page in pages">
+                                        <router-link :to="'/pages/'+page.ID" class="dropdown-item">{{page.Title}}
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!--Search bar-->
+                    <!--<autocomplete placeholder="Search for products" class="d-none d-lg-block mx-4 w-100"></autocomplete>
                     <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
                         <button ref="navbartoggler" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
@@ -218,7 +273,20 @@
                             <div class="navbar-tool-icon-box">
                                 <i class="navbar-tool-icon ci-menu"></i>
                             </div>
-                        </a>
+                        </a>-->
+                       <p>
+                           <div class="navbar-tool-icon-box" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="navbar-tool-icon ci-search"></i>
+                            </div>
+
+                         <!-- <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                              Button with data-bs-target
+                             </button>-->
+                        </p>
+                            <div class="collapse" id="collapseExample">
+                                <autocomplete placeholder="Search for products" class="d-none d-lg-block mx-4 w-100"></autocomplete>
+                            </div>
+                        <!--heart-->
                         <router-link class="navbar-tool d-none d-lg-flex" to="/user/wishlist">
                             <span class="navbar-tool-tooltip">Wishlist</span>
                             <div class="navbar-tool-icon-box">
@@ -308,81 +376,8 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <!-- Search-->
                         
-                        <!-- Departments menu-->
-                        <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
-                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="#"
-                                    data-bs-toggle="dropdown"><i class="ci-view-grid me-2"></i>Departments</a>
-                                <div class="dropdown-menu px-2 pb-4">
-                                    <div class="d-flex flex-wrap" style="width: 80vw;">
-                                        <div v-for="category in categories" :key="'category'+category.ID"
-                                            class="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
-                                            <div class="widget widget-links">
-                                                <router-link v-if="category.Logo"
-                                                    class="d-block overflow-hidden rounded-3 mb-3"
-                                                    :to="'/shop/'+encodeURI(category.Name)">
-                                                    <img :src="category.Logo" :alt="category.Name"
-                                                        style="height: 117px;width: 100%;min-width: 200px;">
-                                                </router-link>
-                                                <h6 class="fs-base mb-2">{{category.Name}}</h6>
-                                                <ul class="widget-list">
-                                                    <li class="widget-list-item mb-1"
-                                                        v-for="subcategory in category.subcategories"
-                                                        :key="'subcategory'+subcategory.ID">
-                                                        <router-link
-                                                            :to="'/shop/'+encodeURI(category.Name)+'/'+encodeURI(subcategory.Name)"
-                                                            class="widget-list-link">{{subcategory.Name}}</router-link>
-                                                    </li>
-                                                    <li class="widget-list-item mb-1">
-                                                        <router-link :to="'/shop/'+encodeURI(category.Name)"
-                                                            class="widget-list-link"
-                                                            :class="{'active': ($route.path == '/shop/'+encodeURI(category.Name))}">
-                                                            Shop All {{category.Name}}
-                                                        </router-link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- Primary menu-->
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <router-link to="/" class="nav-link">Home</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link to="/shop" class="nav-link">Shop</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link to="/blogs" class="nav-link">Blogs</router-link>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="outside">Pages</a>
-                                <ul class="dropdown-menu">
-                                    <!--<li class="dropdown">-->
-                                    <!--    <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Navbar Variants</a>-->
-                                    <!--    <ul class="dropdown-menu">-->
-                                    <!--        <li><a class="dropdown-item" href="navbar-1-level-light.html">1 Level Light</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="navbar-1-level-dark.html">1 Level Dark</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="navbar-2-level-light.html">2 Level Light</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="navbar-2-level-dark.html">2 Level Dark</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="navbar-3-level-light.html">3 Level Light</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="navbar-3-level-dark.html">3 Level Dark</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="home-electronics-store.html">Electronics Store</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="home-marketplace.html">Marketplace</a></li>-->
-                                    <!--        <li><a class="dropdown-item" href="home-grocery-store.html">Side Menu (Grocery)</a></li>-->
-                                    <!--    </ul>-->
-                                    <!--</li>-->
-                                    <!--<li class="dropdown-divider"></li>-->
-                                    <li v-for="page in pages">
-                                        <router-link :to="'/pages/'+page.ID" class="dropdown-item">{{page.Title}}
-                                        </router-link>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                        
+                        
                     </div>
                 </div>
             </div>
